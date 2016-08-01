@@ -48,10 +48,10 @@ var education = {
         {
             "name" : "Universidad Nacional de Tierra del Fuego",
             "location" : "Ushuaia, Tierra del Fuego",
-            "degree" : "Licenciado en Sistemas",
-            "majors" : ["Calidad de Software"],
-            "dates" : "24-10-2014",
-            "url" : "www.untdf.edu.ar"
+            "degree" : "Licenciatura en Sistemas",
+            "majors" : ["Analista de sistemas"],
+            "dates" : "01-03-2010",
+            "url" : "http://www.untdf.edu.ar/"
         }
     ],
     //online courses
@@ -94,8 +94,87 @@ var education = {
 				$(".education-entry:last").append("<br><div><hr class='section-hr'></div>");
 			}
 		}
-
     }
 };
-
 education.display();
+
+//Work
+var work = {
+    "jobs" : [
+        {
+            "employer" : "Poder Judicial de Tierra del fuego",
+            "url" : "http://www.justierradelfuego.gov.ar",
+            "title" : "Web developer",
+            "location" : "Ushuaia, Tierra del Fuego",
+            "dates" : "september 2014 - current",
+            "description" : "Web developer. Html, Laravel PHP, Javascript ",
+        },
+        {
+            "employer" : "Newsan S.A.",
+            "url" : "http://www.newsan.com.ar",
+            "title" : "IT technician, Developer",
+            "location" : "Ushuaia, Tierra del Fuego",
+            "dates" : "april 2012 - august 2014",
+            "description" : "IT support, C# developer. ",
+        }
+    ],
+    display : function(){
+        for (jobs in work.jobs) {
+			$("#workExperience").append(HTMLworkStart);
+			var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[jobs].employer);
+            formattedEmployer = formattedEmployer.replace("%url%", work.jobs[jobs].url);
+            $(".work-entry:last").append(formattedEmployer);
+			var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[jobs].title);
+            $(".work-entry:last").append(formattedTitle);
+            var formattedDates = HTMLworkDates.replace("%data%", work.jobs[jobs].dates);
+            $(".work-entry:last").append(formattedDates);
+            var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[jobs].location);
+            $(".work-entry:last").append(formattedLocation);
+            var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[jobs].description);
+            $(".work-entry:last").append(formattedDescription);
+            $(".work-entry:last").append("<div><hr class='section-hr'></div>");
+		};
+    }
+};
+work.display();
+
+
+//Projects
+var projects = {
+    projects : [
+        {
+            title : "Udacity Frontend Nanodegree",
+            dates : "2016",
+            description : "web page for the Udacity Frontend Nanodegree",
+            images : [
+                "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAjVBMVEXw208yMzDx3Vjw21Hw203w207x3FX34VD85lEmKC7KukmPhT/03lD541ArLS8wMTDjz00oKi6sn0Q6OjE/PzJTUDXZx0vSwUojJi2nmkNKSDQgIy1gXDehlULp1U66q0ZZVTZxazrFtUh4cTuAeDybj0FpYzlNSzRDQjNWUzY1NjC0pkXey0yLgT6GfT7pVaKmAAAB4ElEQVRIie2U25KiMBCGk2GzHaCTEDlFBlDR8cDovP/jbRrWmq3FUty7rbKLCxLy0enD3+ztaWM/nrWAPWvi5wt5IS/kP0GQTFwXoBTgA0S0ibdxMKBqo9UqShTcReRHn2VZRIegvVRca3PcntVd5OKMMYRAcXDacM6Nyzp1D4lDf8oj2J7oTRNlsxJnIGrpvANzOvWaa7tUMxDYW274AjGq3vMOZlwMg1xzW0sUsrsE98O/IswjOkekXI+VmXUxrr+YvFbyMSIbHz63eZNImIlgW1lKcni8FKOnhwhTXUoMN2EaszkZ86+qXId6gFydwCyEKbbM7eDJ1QHOQhhK9rk35Mk1ahYiqCbQrT1j1yhuIEPFvhExikvIttLcZAlOEFCrM1Lzh761qC1huWkHZ3Lruy0tJogqNuFWKiVrTd9BdLV1GyEBJHXbDS/QpKHRu6iMvTz0IYBz7yiCRVmuaoqlnsSi4ndqj+HhLlYMYuoXbfteU8bCxSRjKPZuqBqBVYJ+0OzcoOJRyhs/dP6OBduttdrLXrtDSfJAaLLQGtoJzY7dEjLCalOlabb+aAdB+SSfm/rod/JdNOR/WhehVFsUCX4LBCXQDpO//3Gr+n8OyvHUMDuvi3+aycGTxt5+AYaYJSKNzKyZAAAAAElFTkSuQmCC",
+            ]
+        }
+    ],
+    display : function(){
+        for (project in projects.projects) {
+            $("#projects").append(HTMLprojectStart);
+
+            var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title).replace("%url%", projects.projects[project].url);
+            $(".project-entry:last").append(formattedTitle);
+
+            var formattedDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
+            $(".project-entry:last").append(formattedDates);
+
+            var formattedDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
+            $(".project-entry:last").append(formattedDescription);
+
+            if (projects.projects[project].images.length > 0) {
+                for (image in projects.projects[project].images) {
+                    var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[project].images[image]);
+                    $(".project-entry:last").append(formattedImage);
+                }
+            }
+        }
+    }
+};
+projects.display();
+
+
+
+$("#mapDiv").append(googleMap);
